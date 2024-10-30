@@ -56,6 +56,9 @@ cov_matrix = np.cov(centered_face_vectors.T)
 eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
 ```
 
+![Eigenvectors](images/eigenvectors.png)
+![Eigenvectors](images/eigenvectors2.png)
+
 ## Classification with PCA and KNN
 
 After extracting features, the eigenfaces_classification function leverages PCA to project both training and test images into the reduced “eigenface space.” A KNN classifier then predicts the test images’ labels by calculating distances between vectors in this reduced space. The function includes parameters to adjust the number of neighbors, allowing flexibility in testing:
