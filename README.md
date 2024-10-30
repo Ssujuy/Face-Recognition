@@ -56,6 +56,13 @@ cov_matrix = np.cov(centered_face_vectors.T)
 eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
 ```
 
+- The **eigenvalues** here indicate the variance captured by each **eigenvector**; the higher the **eigenvalue**, the more information that **eigenvector** retains from the original data.
+- The **eigenvectors** correspond to directions in the original high-dimensional space. Each **eigenvector** is a 1D array where each value represents a "weight" for a particular pixel in the face images. These **eigenvectors** form the basis of the **eigenfaces** once reshaped.
+
+```python
+eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+```
+
 ![Eigenvectors](images/eigenvectors.png)
 ![Eigenvectors](images/eigenvectors2.png)
 
@@ -72,8 +79,22 @@ def eigenfaces_classification(train_images, test_images, train_labels, test_labe
 
 KNN performs classification by comparing each test image to the closest training images in the eigenface space, effectively grouping similar faces based on their vector distances.
 
+- The **eigenfaces** are derived from the top eigenvectors. Each **eigenvector** is reshaped to match the original dimensions of the images (for example, 𝑚x𝑛) to create an eigenface, which provides an interpretable, face-like representation of the data’s main features:
+
+- Each **eigenface** visually represents a particular pattern or feature that differentiates one face from another. These might include broad features like shadows across the face, eye shapes, or nose positioning.
+- When the model projects an original image onto these **eigenfaces**, it can effectively "compress" the image by representing it as a weighted combination of these key patterns.
+
+
+```python
+eigenface = eigenvectors[:, :k].reshape((m, n))
+```
+
 ![Eigenfaces](images/eigenfaces.png)
 ![Eigenfaces](images/eigenfaces2.png)
+
+- **Left singular vectors** represent the principal directions in the data, similar to eigenvectors in PCA.
+- **Right singular vectors** reveal the importance of each pixel feature in defining these principal directions, offering insight into which parts of an image are most informative.
+
 ![Singularvectors](images/singularvectors.png)
 ![Singularvectors](images/singularvectors2.png)
 
