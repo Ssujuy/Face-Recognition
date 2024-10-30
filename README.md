@@ -72,6 +72,12 @@ def eigenfaces_classification(train_images, test_images, train_labels, test_labe
 
 KNN performs classification by comparing each test image to the closest training images in the eigenface space, effectively grouping similar faces based on their vector distances.
 
+![Eigenfaces](images/eigenfaces.png)
+![Eigenfaces](images/eigenfaces2.png)
+![Singularvectors](images/singularvectors.png)
+![Singularvectors](images/singularvectors2.png)
+
+
 ## Result Analysis
 
 The results section evaluates the classifier’s accuracy on the test set. Different numbers of principal components and KNN neighbors are tested to optimize the model's accuracy. This analysis shows that the model achieves high accuracy for specific configurations, highlighting the effectiveness of PCA in reducing the dimensionality of facial images without losing significant information.
